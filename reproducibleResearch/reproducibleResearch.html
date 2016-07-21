@@ -1,0 +1,628 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/revealmyEdit.css">
+	<link rel="stylesheet" href="css/theme/moonmyEdit.css" id="theme">
+</head>
+
+
+<style>	
+	ol.1 {
+		list-style-type: disc;
+		font-family: "Lato", sans-serif;
+		font-size: 1em;
+		font-weight: normal;
+		color: #b5b0a3;
+		line-height: 0.8;
+		margin: 0 0 0 1em;
+		}
+</style>
+
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+
+
+		
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+## Reproducible research
+
+Paul Seamer  
+July 2016
+
+*This presentation was created with [reveal.js][revealjs] a HTML presentation framework*
+[revealjs]: https://github.com/hakimel/reveal.js/
+
+Note:
+this is ways of working (not dataset or anlaytical technique) - more open / subjective, but wider application.
+my suggestion - pet topic
+Auditable & Replicable Analysis - unsure as to focus / content
+is this useful?
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### What is reproducible research?
+
+An academic explanation ...
+
+>"The replication of scientific findings using independent investigators, methods, data, equipment, and protocols has long been, and will continue to be, the standard by which scientific claims are evaluated. However, in many fields of study there are examples of scientific investigations that cannot be fully replicated because of a lack of time or resources. In such a situation, there is a need for a minimum standard that can fill the void between full replication and nothing. One candidate for this minimum standard is 'reproducible research', which requires that data sets and computer code be made available to others for verifying published results and conducting alternative analyses."<br>Peng, R. (2009). Reproducible research and Biostatistics. Biostatistics, 10(3):405-408.
+
+Note:
+Roger Peng - Professor of Biostats John Hopkins
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### A distinction between replication and reproducibility
+
+**Replicating** a study, is to independently collect new data, run the analysis, and (hopefully) get to the same results.
+<p>&nbsp;</p>
+
+
+**Reproducing** a study, is to use the provided analytical data to re-run the exact same models and check if you get the same result.
+
+Note:
+bridging the gap between nothing and full replication, which is difficult / expensive / onerous
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### What is reproducible research?
+
+A less formal defintion ...
+
+>"Reproducibility is a love note to your future self."
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Why is reproducibility important?
+
+As a standard to judge scientific claims - replication opens claims to scrutiny, allowing us to keep what works and discard what doesn’t. Reproducible research enhances replicability. Reproducible research helps avoid effort duplication & encourages cumulative knowledge development.
+
+But remember a study can be reproducible and still be wrong.
+
+Reproducibility is important because it is the only thing that an investigator can guarantee about a study.
+
+Note:
+research results are generally considered replicable if there is sufficient information available for independent researchers to make the same findings using the same procedures with new data.
+By “wrong”, I mean that the conclusion or claim can be wrong. If I claim that X causes Y (think “sugar causes cancer”), my data analysis might be reproducible, but my claim might ultimately be incorrect for a variety of reasons.
+	</script>
+</section>
+
+
+
+
+<section>
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Reinhart and Rogoff
+
+<img class = "fragment current-visible-remove" data-fragment-index = "1" src = "images/reinhartRogoffTogether.png", width = "60%", height = "60%">
+
+<p class = "fragment" data-fragment-index = "2">
+Reinhart, Carmen M. and Kenneth S. Rogoff. 2010. Growth in a Time of Debt. American Economic Review, 100(2):573-78.
+</p>
+
+<p class = "fragment" data-fragment-index = "3">
+R-R claimed that growth and debt are correlated, and that when debt exceeds 90 percent of GDP, economic growth drops off. Politicians, commentators, and activists widely cited the paper in political debates over the effectiveness of austerity in fiscal policy for debt-burdened economies. Appearing in the aftermath of the financial crisis of 2007–2008, it provided support for pro-austerity policies.
+</p>
+
+<p class = "fragment" data-fragment-index = "4">
+*"R-R faced substantial criticism from the start, and the controversy grew over time. (…) Other researchers, using seemingly comparable data on debt and growth, couldn’t replicate the Reinhart-Rogoff results. They typically found some correlation between high debt and slow growth — but nothing that looked like a tipping point at 90 percent or, indeed, any particular level of debt."*<br>Paul Krugman writing in the NYT.
+</p>
+
+Note:
+Carmen Reinhart and Kenneth Rogoff; very senior positions at IMF; co-authored best-selling book; professor CfIE @ Maryland later Harvard, Harvard professor
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Reinhart and Rogoff cont.
+
+<img class = "fragment current-visible-remove" data-fragment-index = "1" src = "images/220px-Thomas_Herndon_headshot.jpg", width = "30%", height = "30%">
+
+<p class = "fragment current-visible-remove" data-fragment-index = "2">
+Meanwhile, Thomas Herndon, a student at the University of Massachusetts Amherst's doctoral program was assigned to pick an economics paper and try to reproduce the results for an applied econometrics class. He chose "Growth in a Time of Debt". He expected to replicate Reinhart and Rogoff's results, then challenge the idea that high public debt caused growth to slow. But he struggled to reproduce their results.
+</p>
+
+<p class = "fragment current-visible-remove" data-fragment-index = "3">
+*"At first, I didn't believe him. I thought, 'OK he's a student, he's got to be wrong. These are eminent economists and he's a graduate student.'"*<br>Robert Pollin, Professor of Economics, University of Massachusetts Amherst; and Herndon's tutor for the econometrics class.
+</p>
+
+<p class = "fragment" data-fragment-index = "4">
+Eventually, Herndon was able to obtain the original spreadsheet from R-R — and the mystery of the irreproducible results was solved.
+</p>
+
+<div class = "fragment" data-fragment-index = "5">
+<ol class="1">
+<li>R-R excluded some important data from their final analysis;</li> 
+<li>R-R weighted countries in a manner that was not proportional to the number of years they contributed to the dataset (RR used equal weighting of countries); and</li>
+<li>there was an error in R-R’s Excel formula which resulted in them inadvertently leaving out five countries from their final analysis.</li>
+</ol class="1">
+</div>
+
+<p class = "fragment current-visible" data-fragment-index = "6">
+Herndon, Ash and Pollins' findings were made public in April 2013 and later published in a peer-reviewed journal.
+</p>
+
+<p class = "fragment current-visible" data-fragment-index = "6">
+Herndon, T., Ash, M. and Pollin, R., 2013. Does High Public Debt Consistently Stifle Economic Growth? A Critique of Reinhart and Rogoff. Political Economy Research Institute Working Paper No. 322.	
+</p>
+
+<p class = "fragment current-visible" data-fragment-index = "6">
+Herndon, T., Ash, M. and Pollin, R., 2014. Does high public debt consistently stifle economic growth? A critique of Reinhart and Rogoff. Cambridge journal of economics, 38(2):257-279.
+</p>
+
+Note:
+http://simplystatistics.org/2013/04/16/i-wish-economists-made-better-plots/
+Our hero - Thomas Herndon
+A coding error in their Excel spreadsheet sliced several countries out of the data set. Several critical years of post-war data from New Zealand were left out, thereby omitting a time in which both its debt level and growth rate were high. And the authors reckon the Reinhart-Rogoff method of calculating average growth gave outsize weight to unrepresentative data points (including one year of abysmal New Zealand data).
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### R-R lessons
+
+Mistakes are an ever present part of our work. The problem is not that we make coding mistakes.
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
+The problem is that we often use tools and practices that make it difficult to find and correct our mistakes.
+<!-- .element: class="fragment" data-fragment-index="2" -->
+
++ binary files (like Excel’s) that can’t be version controlled in a way that fully reveals the research process
+<!-- .element: class="fragment" data-fragment-index="3" -->
++ not commenting code
+<!-- .element: class="fragment" data-fragment-index="3" -->
++ not making your data readily available in formats that make reproducing your findings easy
+<!-- .element: class="fragment" data-fragment-index="3" -->
++ not having a system for quickly fixing mistakes when they are found
+<!-- .element: class="fragment" data-fragment-index="3" -->
+
+
+Note:
+http://christophergandrud.blogspot.co.uk/2013/04/reinhart-rogoff-everyone-makes-coding.html
+The tools and practices R & R used made it harder to find and correct the mistake, so policymakers were operating with less accurate information for longer.
+	</script>
+</section>
+
+
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Why should you care?
+
+<p class ="fragment">STEVEN: *"For the greater good of scientific endeavour of course."*</p>
+<br>
+<p class="fragment">GRADUATE: *"... Nah."*</p>
+<br>
+<p class="fragment">STEVEN: *"OK. Because it will make your life easier!"*</p>
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Benefits for <span style="text-transform: uppercase;">you</span>
+
+1. Getting the right answers - retractions are embarrassing and can end careers
+2. Saving time - a focus on reproducibility will make you more efficient 
+3. Avoiding errors - errors are inevitable. A workflow designed for reproducibility helps you find and fix them
+4. More impact - projects that are reproducible are more likely to be shared / adopted
+5. Scalability - quicker and easier to apply methods to other areas
+6. Gettting help / colloborating - easier to explain what you have done and why, and get useful feedback 
+
+Note:
+avoids duplication, rework etc.
+investment is worth it - brings benefits
+http://www.ihrp.uic.edu/files/Workflow%20Slides%20JSLong%20110410.pdfFVt
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Workflow
+
+>"A coordinated framework for conducting data analysis."
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
+An effective workflow is essential for reproducibility.
+<!-- .element: class="fragment" data-fragment-index="2" -->
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Workflow goals
+
+<p class = "fragment" data-fragment-index = "1"><b>Transparency:</b> A good workflow organizes the elements of the project logically and clearly, to make it easy for an observer (including yourself) to understand how the pieces come together.</p>
+
+<p class = "fragment" data-fragment-index = "2"><b>Maintainability:</b> A good workflow makes it easy to modify and adapt the project.</p>
+
+<p class = "fragment" data-fragment-index = "3"><b>Modularity:</b> A good workflow encapsulates discrete tasks into separate components, so that it's always clear where modifications need to be made (and only made in one place), and components are re-usable for other projects.</p>
+
+<p class = "fragment" data-fragment-index = "4"><b>Portability:</b> A good workflow makes it easy to move the project to another system, or hand it over to another person to work on.</p>
+ 
+<p class = "fragment" data-fragment-index = "5"><b>Reproducibility:</b> A good workflow makes it easy for you, or others, to reproduce your results.</p>
+
+<p class = "fragment" data-fragment-index = "6"><b>Efficiency:</b> A good workflow saves you time, by making it easier to work on the project, and by automating as much of the process as possible.</p>
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Workflow cont.
+
+You already have a workflow.
+<!-- .element: class="fragment" data-fragment-index="1" -->
+1. Your WF might be:
+<!-- .element: class="fragment" data-fragment-index="2" -->
+  * Planned and carefully orchestrated
+  ... OR adhoc, piecemeal, developed in reaction to mistakes
+  <!-- .element: class="fragment" data-fragment-index="3" -->
+
+2. You can improve your WF with a modest investment of time
+  <!-- .element: class="fragment" data-fragment-index="4" -->
+  * The less experience you have, the easier it is
+  ... AND it will save you time and make you a better <!-- .element: class="fragment" data-fragment-index="5" -->
+  ~~person~~ analyst
+	<!-- .element: class="fragment" data-fragment-index="5" -->
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Workflow for a typical analytical project
+
+1. Client commissions a report that requires data analysis
+<br>
+2. The analyst downloads some data, munges the data and saves the result
+<br>
+3. The analyst analyzes the data created in (2), gets close to their goal, but needs more data and so goes back to (1)
+<br>
+4. Rinse repeat until the tables and graphics meet QA/QC and satisfy the client
+<br>
+5. Write report incorporating tables and graphics
+<br>
+6. Next year, the happy client comes back and wants an update. This should be as simple as updating the upstream data by a new download, and pressing a "RECALCULATE" button, unless specifications change
+<br>
+
+Note:
+lifted directly from stackoverflow question / discussion thread
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Organising projects and workflow
+
+1. create a new project directory e.g.  
+<code>S:\Commissioning Intelligence And Strategy\Strategic Analytics\Projects 2016\myNewProject\</code>
+
+What next?
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Organising projects and workflow cont.
+
+What would a standardised folder structure look like?
+
+Note:
+use flipchart to list ideas for folder structure
+raw data; literature; outputs; proposal; TODO.MD and README.MD; deprecated; analysis (rProject); sqlScripts
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Organising projects and workflow cont.
+
+Possible folder structure:
+
+<code>\raw data\</code>  
+<code>\literature\</code>  
+<code>\SQLscripts\</code>  
+<code>\proposal\</code>  
+<code>\outputs\</code>  
+<code>\archive\ or \deprecated\</code>  
+<code>\Rproject\ or \analysis\</code>  
+<code>README.MD</code>  
+<code>TODO.MD</code>
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Some practical tips / suggestions
+
++ provenance of raw data (never modify raw data!)
++ avoid spaces in file names and directories
++ to make multi-word names easily readable without using spaces use camelCase
++ include a README.MD (and TODO.MD) in the root of your project folder
++ use relative paths (not absolute paths)
++ use descriptive variable / file names
++ follow a style guide
+ + [Hadley Wickham's R style guide] [HadleyStyle]
++ Comment, comment, comment!
+ + it is always faster to document it today than tomorrow 
+ + you will never say: "Damn, this script has too many comments."
++ make clear any dependencies
++ implement version control
++ backup your work
+ 
+[HadleyStyle]: http://adv-r.had.co.nz/Style.html
+
+Note:
+https://google.github.io/styleguide/Rguide.xml
+http://adv-r.had.co.nz/Style.html
+Markdown is a lightweight markup language with plain text formatting. Markdown is often used to format readme files
+	</script>
+</section>
+
+
+
+
+<section>
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Workflow in R
+
+The idea presented there is to break the code into four files, all stored in your project directory. These four files are to be processed in the following order.
+
+1. <code>load.R</code>
+2. <code>clean.R</code>
+3. <code>functions.R</code>
+4. <code>do.R</code>
+
+All analysis from reading data to producing the final results should be reproducible by simply <code>source()</code>ing these four files in order with no further user intervention.
+
+Note:
+discuss Projects, Workspaces, Scripts - is your Workspace 'real' or are your Scripts 'real'
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Workflow in R cont.
+
+does it work?
+
++ <code>do.R</code> file can become large and unwieldy
++ break <code>do.R</code> into sensible chunks
++ <code>main.R</code> this file simply contains a list of source statements to run each of the other R files in order. Running <code>main.R</code> will run the entire project from scratch. So if the data are updated, or the functions are changed, it is easy to repeat the entire analysis in one step — just run <code>source("main.R").</code>
++ numbering the scripts, so it's completely obvious in which order they should be run e.g.<br>
+<code>1-download.R</code><br>
+<code>2-clean.R</code><br>
+<code>3-explore.R</code> etc.
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Example R script
+
+<section>
+  <pre><code data-trim>
+###############################################################################
+# MY NEW analytcial project
+# created by Paul Seamer 2016-07-20
+# last edited by Paul Seamer 2016-07-20
+###############################################################################
+
+
+###############################################################################
+# README
+# for loading and cleaning on social care spend data
+# from PSS-EX1 (2005-06 to 2013-14) and ASC-FR (2014-15)
+# two series (1) gross total cost (i.e. total spending by social care
+# departments) and (2) income from client contributions
+###############################################################################
+
+
+###############################################################################
+# confirm correct library path
+test_that('correctlibPath', {
+  expect_equal(.libPaths()
+               , 'C:/Program Files/R/R-3.2.2/library')
+})
+# set working directory
+setwd('C:/Projects/relationshipSocialCareEmergencyCare/rProject')
+
+# required packages
+library(dplyr)  # %>%, filter, select, mutate, ...
+library(tidyr)  # gather
+library(ggplot2)  # gpplot
+library(testthat)  # expect_equal
+###############################################################################
+
+
+###############################################################################
+# IN THIS SCRIPT
+# 1 load spend data
+# 2 wrangle spend data into 'clean' format
+# 3 check missing units / observations
+# 4 summary plots
+# 5 inflate spend data to current prices
+# 6 save as spendClean0514.RDS
+###############################################################################
+
+
+
+# 1 load spend data------------------------------------------------------------
+
+# Code sections allow you to break a larger source file into a set of discrete regions for easy navigation between them.
+# Code sections are automatically foldable.
+# To insert a new code section you can use the Code -> Insert Section command or CTRL+SHIFT+R
+# Alternatively, any comment line which includes at least four trailing dashes (-),
+# equal signs (=), or pound signs (#) automatically creates a code section.
+# To navigate between code sections you can use the Jump To menu available at the bottom of the editor: 
+
+
+# 2 wrangle spend data------------------------------------------------------------
+</code></pre>
+</section>
+
+
+Note:
+Anything else for R - Session Info, specify parameter values upfront, dynamic documents - LaTeX (Sweave), Slidify (Markdown)
+	</script>
+</section>
+
+
+</section>
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Take home
+
+Partially reproducible is better than not at all reproducible. Just try to make your next paper or project better organized than the last.
+
+Note:
+???
+	</script>
+</section>
+
+
+
+
+<section data-markdown data-separator-notes="^Note:">
+	<script type="text/template">	
+### Resources
+
+[stackoverflow discussion on Workflow for statistical analysis and report writing] [stackoverflowDiscussion]  
+[Rob Hyndman post on Workflow in R] [RobHyndmanPost]  
+[Gandrud textbook Reproducible Research with R and RStudio Second Edition] [GandrudTextbook]  
+<img src = "images/GandrudTextbook.jpg", width = "8%", height = "8%">  
+[Stodden textbook Implementing Reproducible Research] [implementingRepResearch]  
+[Chapters available for free download from the Open Science Framework] [OSF]  
+<img src = "images/StoddenTextbook.jpg", width = "8%", height = "8%">  
+[Coursera course on Reproducible research] [CourseraCourse]
+
+
+[stackoverflowDiscussion]: http://stackoverflow.com/questions/1429907/workflow-for-statistical-analysis-and-report-writing
+[RobHyndmanPost]: http://robjhyndman.com/hyndsight/workflow-in-r/
+[GandrudTextbook]: https://englianhu.files.wordpress.com/2016/01/reproducible-research-with-r-and-studio-2nd-edition.pdf
+[implementingRepResearch]: https://www.amazon.co.uk/Implementing-Reproducible-Research-Chapman-Hall/dp/1466561599
+[OSF]: https://osf.io/s9tya/wiki/home/
+[CourseraCourse]: https://www.coursera.org/learn/reproducible-research
+
+Note:
+http://blog.revolutionanalytics.com/2010/10/a-workflow-for-r.html
+https://www.r-statistics.com/2010/09/managing-a-statistical-analysis-project-guidelines-and-best-practices/
+http://simplystatistics.org/2014/06/06/the-real-reason-reproducible-research-is-important/
+http://stats.stackexchange.com/questions/2910/how-to-efficiently-manage-a-statistical-analysis-project
+	</script>
+</section>
+
+
+
+
+		</div>
+	</div>
+	
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+	<script src="reproducibleResearchReveal-init.js"></script>
+	
+    </body>
+</html>
+
+
